@@ -1,0 +1,15 @@
+version: '2'
+services:
+    prohill-app:
+        image: prohill
+        environment:
+            # - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://prohill-mysql:3306/prohill?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    prohill-mysql:
+        extends:
+            file: mysql.yml
+            service: prohill-mysql
